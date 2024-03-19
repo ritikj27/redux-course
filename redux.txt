@@ -1,0 +1,51 @@
+Redux store
+- application state => all the state of our appln store in one place
+{
+    Astate:{....},
+    BSstate:{....},
+    Cstate:{...}
+}
+- state update logic => reducer func(){}
+- method modify to chnage state => subscribe()
+
+->redux say does not mutate state .without mutate
+
+->immerjs
+const user = [{
+    name:'ok',
+    age:20
+},{
+
+    name:'ok2',
+    age:202
+}]
+
+user[1].name = 'ri
+
+const users = user.map((user,i)=>{
+    if(i == 1){
+        return {...user,age:20}
+    }
+})
+
+const newUsr = produce(users,(userCopy)=>{
+    user[1].name = 'ri'
+})
+
+
+//middleware
+
+function logger(store){
+    return fnction(next){
+        return function(action){
+            next(action)
+        }
+    }
+}
+
+configureStore({
+    reducer:{
+        cart:cartReducer
+    },
+    middleware:[logger]
+})
